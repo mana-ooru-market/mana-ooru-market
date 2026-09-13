@@ -82,5 +82,33 @@ function sendSellerWhatsApp(){
   </div>
  </div>
 </div>
+<script>
+let cart = [];
+let total = 0;
 
+function showCart() {
+  if (cart.length === 0) {
+    alert("🛒 Cart empty ga undi");
+    return;
+  }
+
+  let message = "🛒 Your Cart\n\n";
+
+  cart.forEach((item, index) => {
+    message += (index + 1) + ". " + item.name + " - ₹" + item.price + "\n";
+  });
+
+  message += "\nTotal: ₹" + total;
+  alert(message);
+}
+
+function addToCart(name, price) {
+  cart.push({name: name, price: price});
+  total += price;
+
+  document.getElementById("cartCount").innerText = cart.length;
+
+  alert("✅ " + name + " Cart lo add ayyindi");
+}
+</script>
 </body></html>
