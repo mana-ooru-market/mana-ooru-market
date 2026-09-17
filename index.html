@@ -7,9 +7,14 @@
 const prices={"మామిడి పచ్చడి":180,"మామిడి తాండ్ర":200,"స్వచ్ఛమైన పసుపు":150,"హోమ్‌మేడ్ హల్వా":220,"తాజా మామిడిపండ్లు":120};
 let cart=[];
 function addToCart(product) {
-    cart.push({name: product, price: prices[product], qty: 1});
+    let item = cart.find(i => i.name === product);
+    if (item) {
+        item.qty += 1;
+    } else {
+        cart.push({ name: product, price: prices[product], qty: 1 });
+    }
     renderCart();
-    alert(product + " cart లో add అయింది.");
+    alert(product + " cart లో add అయింది!");
 }
 function renderCart(){document.getElementById('cartCount').textContent=cart.reduce((a,i)=>a+i.qty,0);const el=document.getElementById('cartItems');if(!cart.length){el.innerHTML='<p>Cart emptyగా ఉంది.</p>';document.getElementById('cartTotal').textContent='0';return}el.innerHTML=cart.map((i,n)=>`<div class="cartitem"><div><b>${i.name}</b><br>₹${prices[i.name]} × ${i.qty}</div><div><button class="qtybtn" onclick="changeQty(${n},-1)">−</button> ${i.qty} <button class="qtybtn" onclick="changeQty(${n},1)">+</button></div></div>`).join('');document.getElementById('cartTotal').textContent=cart.reduce((a,i)=>a+prices[i.name]*i.qty,0);}
 function changeQty(n,d){cart[n].qty+=d;if(cart[n].qty<=0)cart.splice(n,1);renderCart();}
