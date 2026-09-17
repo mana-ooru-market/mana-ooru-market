@@ -92,60 +92,26 @@ function sendSellerWhatsApp(){
  </div>
 </div>
 <script>
-let cart = [];
-let total = 0;
+  const prices = {
+    "మామిడి పచ్చడి": 180,
+    "మామిడి తాండ్ర": 200,
+    "స్వచ్ఛమైన పసుపు": 150,
+    "హోమ్‌మేడ్ హల్వా": 220,
+    "తాజా మామిడిపండ్లు": 120
+  };
+  let cart = [];
 
-function showCart() {
-  if (cart.length === 0) {
-    alert("🛒 Cart empty ga undi");
-    return;
+  function addToCart(product) {
+    let item = cart.find(i => i.name === product);
+    if (item) {
+      item.qty += 1;
+    } else {
+      cart.push({ name: product, price: prices[product], qty: 1 });
+    }
+    renderCart();
+    alert(product + " cart లో add అయింది!");
   }
-
-  let message = "🛒 Your Cart\n\n";
-
-  cart.forEach((item, index) => {
-    message += (index + 1) + ". " + item.name + " - ₹" + item.price + "\n";
-  });
-
-  message += "\nTotal: ₹" + total;
-  alert(message);
-}
-
-
 </script>
+</body>
+</html>
 </body></html>
-<hr>
-<h2 style="text-align:center;">మా ఉత్పత్తులు (Our Products)</h2>
-<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:20px;">
-
-  <div style="border:1px solid #ccc; padding:15px; border-radius:8px; text-align:center; width:200px;">
-    <h3>మామిడి పచ్చడి</h3>
-    <p>ధర: ₹180</p>
-    <button onclick="addToCart('మామిడి పచ్చడి')">Add to Cart</button>
-  </div>
-
-  <div style="border:1px solid #ccc; padding:15px; border-radius:8px; text-align:center; width:200px;">
-    <h3>మామిడి తాండ్ర</h3>
-    <p>ధర: ₹200</p>
-    <button onclick="addToCart('మామిడి తాండ్ర')">Add to Cart</button>
-  </div>
-
-  <div style="border:1px solid #ccc; padding:15px; border-radius:8px; text-align:center; width:200px;">
-    <h3>స్వచ్ఛమైన పసుపు</h3>
-    <p>ధర: ₹150</p>
-    <button onclick="addToCart('స్వచ్ఛమైన పసుపు')">Add to Cart</button>
-  </div>
-
-  <div style="border:1px solid #ccc; padding:15px; border-radius:8px; text-align:center; width:200px;">
-    <h3>హోమ్‌మేడ్ హల్వా</h3>
-    <p>ధర: ₹220</p>
-    <button onclick="addToCart('హోమ్‌మేడ్ హల్వా')">Add to Cart</button>
-  </div>
-
-  <div style="border:1px solid #ccc; padding:15px; border-radius:8px; text-align:center; width:200px;">
-    <h3>తాజా మామిడిపండ్లు</h3>
-    <p>ధర: ₹120</p>
-    <button onclick="addToCart('తాజా మామిడిపండ్లు')">Add to Cart</button>
-  </div>
-
-</div>
