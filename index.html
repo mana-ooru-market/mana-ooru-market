@@ -84,7 +84,7 @@
 
     .card img { 
       width: 100%; 
-      height: 120px; 
+      height: 140px; 
       object-fit: cover; 
       border-radius: 8px; 
       background: #eee; 
@@ -162,39 +162,44 @@
 
 <div class="products-container">
   
+  <!-- 1. మామిడి తాండ్ర -->
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=300" alt="మామిడి పచ్చడి">
-    <h3>మామిడి పచ్చడి</h3>
-    <p>ధర: ₹180</p>
-    <button class="btn" onclick="addToCart('మామిడి పచ్చడి')">Add to Cart</button>
-  </div>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=300" alt="మామిడి తాండ్ర">
+    <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=500" alt="మామిడి తాండ్ర">
     <h3>మామిడి తాండ్ర</h3>
     <p>ధర: ₹200</p>
     <button class="btn" onclick="addToCart('మామిడి తాండ్ర')">Add to Cart</button>
   </div>
 
+  <!-- 2. మామిడి పచ్చడి -->
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=300" alt="స్వచ్ఛమైన పసుపు">
-    <h3>స్వచ్ఛమైన పసుపు</h3>
-    <p>ధర: ₹150</p>
-    <button class="btn" onclick="addToCart('స్వచ్ఛమైన పసుపు')">Add to Cart</button>
+    <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500" alt="మామిడి పచ్చడి">
+    <h3>మామిడి పచ్చడి</h3>
+    <p>ధర: ₹180</p>
+    <button class="btn" onclick="addToCart('మామిడి పచ్చడి')">Add to Cart</button>
   </div>
 
+  <!-- 3. తాజా మామిడిపండ్లు -->
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=300" alt="హోమ్‌మేడ్ హల్వా">
+    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=500" alt="తాజా మామిడిపండ్లు">
+    <h3>తాజా మామిడిపండ్లు</h3>
+    <p>ధర: ₹120</p>
+    <button class="btn" onclick="addToCart('తాజా మామిడిపండ్లు')">Add to Cart</button>
+  </div>
+
+  <!-- 4. హోమ్‌మేడ్ హల్వా -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=500" alt="హోమ్‌మేడ్ హల్వా">
     <h3>హోమ్‌మేడ్ హల్వా</h3>
     <p>ధర: ₹220</p>
     <button class="btn" onclick="addToCart('హోమ్‌మేడ్ హల్వా')">Add to Cart</button>
   </div>
 
+  <!-- 5. స్వచ్ఛమైన పసుపు -->
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=300" alt="తాజా మామిడిపండ్లు">
-    <h3>తాజా మామిడిపండ్లు</h3>
-    <p>ధర: ₹120</p>
-    <button class="btn" onclick="addToCart('తాజా మామిడిపండ్లు')">Add to Cart</button>
+    <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500" alt="స్వచ్ఛమైన పసుపు">
+    <h3>స్వచ్ఛమైన పసుపు</h3>
+    <p>ధర: ₹150</p>
+    <button class="btn" onclick="addToCart('స్వచ్ఛమైన పసుపు')">Add to Cart</button>
   </div>
 
 </div>
@@ -256,11 +261,11 @@
   const myPhoneNumber = "918688347212"; 
 
   const prices = {
-    "మామిడి పచ్చడి": 180,
     "మామిడి తాండ్ర": 200,
-    "స్వచ్ఛమైన పసుపు": 150,
+    "మామిడి పచ్చడి": 180,
+    "తాజా మామిడిపండ్లు": 120,
     "హోమ్‌మేడ్ హల్వా": 220,
-    "తాజా మామిడిపండ్లు": 120
+    "స్వచ్ఛమైన పసుపు": 150
   };
   
   let cart = [];
