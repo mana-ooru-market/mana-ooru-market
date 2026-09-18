@@ -7,7 +7,6 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
     
-    /* Header with Image & Centered Text */
     header { 
       background: #1b365d; 
       color: white; 
@@ -54,7 +53,6 @@
       margin-left: auto;
     }
 
-    /* Grid Layout - 2 Cards per row on Mobile */
     .products-container { 
       display: grid; 
       grid-template-columns: repeat(2, 1fr); 
@@ -92,17 +90,8 @@
       background: #eee; 
     }
 
-    .card h3 {
-      font-size: 15px;
-      margin: 8px 0 4px 0;
-    }
-
-    .card p {
-      font-size: 14px;
-      margin: 0 0 8px 0;
-      color: #333;
-      font-weight: bold;
-    }
+    .card h3 { font-size: 15px; margin: 8px 0 4px 0; }
+    .card p { font-size: 14px; margin: 0 0 8px 0; color: #333; font-weight: bold; }
 
     .btn { 
       background: #2e7d32; 
@@ -116,22 +105,19 @@
       font-size: 13px;
     }
     
-    /* Cart Modal Styling */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
-    .modal-content { background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 450px; max-height: 90vh; overflow-y: auto; }
+    .modal-content { background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 450px; max-height: 90vh; overflow-y: auto; position: relative; }
     .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 8px; }
     .qty-btn { background: #ddd; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: bold; margin: 0 4px; }
     
-    /* Form & Payment Styling */
     .checkout-section { margin-top: 15px; border-top: 2px dashed #ddd; padding-top: 15px; text-align: left; }
     .checkout-section h4 { margin-bottom: 10px; color: #1b365d; }
     .input-group { margin-bottom: 10px; }
     .input-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 4px; }
-    .input-group input, .input-group textarea, .input-group select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    .input-group input, .input-group textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
     
     .payment-options { display: flex; gap: 10px; margin-bottom: 10px; }
     .payment-option { flex: 1; border: 1px solid #ccc; padding: 10px; border-radius: 6px; text-align: center; cursor: pointer; font-size: 13px; }
-    .payment-option input { margin-right: 5px; }
 
     .place-order-btn { 
       background: #28a745; 
@@ -146,6 +132,17 @@
       font-size: 16px;
     }
     .close-btn { background: #777; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 8px; }
+
+    /* Order Confirmation Success Screen */
+    .success-box {
+      text-align: center;
+      padding: 20px 10px;
+    }
+    .success-icon {
+      font-size: 50px;
+      color: #28a745;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -201,12 +198,11 @@
 
 <!-- Cart Pop-up Modal -->
 <div id="cartModal" class="modal">
-  <div class="modal-content">
+  <div class="modal-content" id="modalContent">
     <h3>🛒 మీ కార్ట్ (Your Cart)</h3>
     <div id="cartItems"></div>
     <h4 id="cartTotal">మొత్తం: ₹0</h4>
     
-    <!-- Delivery Details & Payment Option -->
     <div class="checkout-section">
       <h4>📦 డెలివరీ వివరాలు & చెల్లింపు (Payment)</h4>
       
@@ -254,7 +250,6 @@
 </div>
 
 <script>
-  // మీ వాట్సాప్ ఫోన్ నంబర్
   const myPhoneNumber = "918688347212"; 
 
   const prices = {
@@ -292,6 +287,7 @@
   }
 
   function showCart() {
+    resetModalContent();
     renderCartModal();
     document.getElementById('cartModal').style.display = 'flex';
   }
@@ -306,6 +302,8 @@
 
   function renderCartModal() {
     let container = document.getElementById('cartItems');
+    if (!container) return;
+    
     if (cart.length === 0) {
       container.innerHTML = "<p>కార్ట్ ఖాళీగా ఉంది!</p>";
       document.getElementById('cartTotal').textContent = "మొత్తం: ₹0";
@@ -335,6 +333,58 @@
 
     container.innerHTML = html;
     document.getElementById('cartTotal').textContent = `మొత్తం: ₹${grandTotal}`;
+  }
+
+  function resetModalContent() {
+    document.getElementById('modalContent').innerHTML = `
+      <h3>🛒 మీ కార్ట్ (Your Cart)</h3>
+      <div id="cartItems"></div>
+      <h4 id="cartTotal">మొత్తం: ₹0</h4>
+      
+      <div class="checkout-section">
+        <h4>📦 డెలివరీ వివరాలు & చెల్లింపు (Payment)</h4>
+        
+        <div class="input-group">
+          <label>మీ పేరు (Name):</label>
+          <input type="text" id="custName" placeholder="ఉదా: రాము">
+        </div>
+
+        <div class="input-group">
+          <label>ఫోన్ నంబర్ (Phone Number):</label>
+          <input type="tel" id="custPhone" placeholder="ఉదా: 9876543210">
+        </div>
+
+        <div class="input-group">
+          <label>చిరునామా (Delivery Address):</label>
+          <textarea id="custAddress" rows="2" placeholder="ఇంటి నంబర్, వీధి, ఊరి పేరు..."></textarea>
+        </div>
+
+        <div class="input-group">
+          <label>చెల్లింపు పద్ధతి (Payment Method):</label>
+          <div class="payment-options">
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="UPI" checked onclick="toggleUpiDetails(true)">
+              📲 UPI (GPay/PhonePe)
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="COD" onclick="toggleUpiDetails(false)">
+              💵 Cash on Delivery
+            </label>
+          </div>
+        </div>
+
+        <div class="input-group" id="upiDetailGroup">
+          <label>మీ UPI ID / Google Pay / PhonePe నంబర్:</label>
+          <input type="text" id="custUpi" placeholder="ఉదా: example@upi లేదా 9876543210">
+        </div>
+
+        <button class="place-order-btn" onclick="submitOrder()">
+          ✅ ఆర్డర్ కన్ఫర్మ్ చేయండి
+        </button>
+      </div>
+
+      <button class="close-btn" onclick="closeCart()">Close</button>
+    `;
   }
 
   function submitOrder() {
@@ -380,6 +430,20 @@
 
     let whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
+
+    // Show Order Confirmation Screen inside Modal
+    document.getElementById('modalContent').innerHTML = `
+      <div class="success-box">
+        <div class="success-icon">🎉</div>
+        <h2 style="color: #28a745; margin-bottom: 5px;">మీ ఆర్డర్ కన్ఫర్మ్ అయ్యింది!</h2>
+        <p style="color: #555; font-size: 14px;">మీ ఆర్డర్ వివరాలు వాట్సాప్‌కి పంపించబడ్డాయి. మేము త్వరలోనే మిమ్మల్ని సంప్రదిస్తాము.</p>
+        <button class="place-order-btn" style="background: #1b365d;" onclick="closeCart()">ఓకే (OK)</button>
+      </div>
+    `;
+
+    // Clear Cart
+    cart = [];
+    updateCart();
   }
 </script>
 
