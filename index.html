@@ -120,7 +120,7 @@
     .payment-option { flex: 1; border: 1px solid #ccc; padding: 10px; border-radius: 6px; text-align: center; cursor: pointer; font-size: 13px; }
 
     .place-order-btn { 
-      background: #28a745; 
+      background: #25d366; 
       color: white; 
       border: none; 
       padding: 12px 15px; 
@@ -130,10 +130,13 @@
       margin-top: 10px; 
       font-weight: bold; 
       font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
     .close-btn { background: #777; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 8px; }
 
-    /* Order Confirmation Success Screen */
     .success-box {
       text-align: center;
       padding: 20px 10px;
@@ -241,7 +244,7 @@
       </div>
 
       <button class="place-order-btn" onclick="submitOrder()">
-        ✅ ఆర్డర్ కన్ఫర్మ్ చేయండి
+        📲 వాట్సాప్‌ ద్వారా ఆర్డర్ చేయండి
       </button>
     </div>
 
@@ -379,7 +382,7 @@
         </div>
 
         <button class="place-order-btn" onclick="submitOrder()">
-          ✅ ఆర్డర్ కన్ఫర్మ్ చేయండి
+          📲 వాట్సాప్‌ ద్వారా ఆర్డర్ చేయండి
         </button>
       </div>
 
@@ -431,17 +434,15 @@
     let whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 
-    // Show Order Confirmation Screen inside Modal
     document.getElementById('modalContent').innerHTML = `
       <div class="success-box">
         <div class="success-icon">🎉</div>
-        <h2 style="color: #28a745; margin-bottom: 5px;">మీ ఆర్డర్ కన్ఫర్మ్ అయ్యింది!</h2>
-        <p style="color: #555; font-size: 14px;">మీ ఆర్డర్ వివరాలు వాట్సాప్‌కి పంపించబడ్డాయి. మేము త్వరలోనే మిమ్మల్ని సంప్రదిస్తాము.</p>
+        <h2 style="color: #28a745; margin-bottom: 5px;">ధన్యవాదాలు!</h2>
+        <p style="color: #555; font-size: 14px;">వాట్సాప్‌లో మెసేజ్ సెండ్ (Send) బటన్ క్లిక్ చేయండి. మీ ఆర్డర్ పూర్తి అవుతుంది.</p>
         <button class="place-order-btn" style="background: #1b365d;" onclick="closeCart()">ఓకే (OK)</button>
       </div>
     `;
 
-    // Clear Cart
     cart = [];
     updateCart();
   }
