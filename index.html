@@ -201,14 +201,28 @@
     }
     .close-btn { background: #777; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 8px; }
 
-    .success-box {
+    .cancel-btn-whatsapp {
+      display: block;
+      background: #dc3545;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 13px;
+      margin: 10px 0;
       text-align: center;
-      padding: 20px 10px;
     }
-    .success-icon {
-      font-size: 50px;
-      color: #28a745;
-      margin-bottom: 10px;
+
+    .policy-box {
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: left;
+      font-size: 11px;
+      color: #555;
+      margin-top: 10px;
+      border: 1px solid #eee;
     }
   </style>
 </head>
@@ -376,7 +390,6 @@
   }
 
   function updateUI() {
-    // 1. Update Buttons for each product
     Object.keys(prices).forEach(product => {
       let btnContainer = document.getElementById(`btn-container-${product}`);
       if (!btnContainer) return;
@@ -397,7 +410,6 @@
       }
     });
 
-    // 2. Update Floating Cart Bar
     let totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
     let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
     let floatingBar = document.getElementById('floatingCartBar');
@@ -558,12 +570,32 @@
     let whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 
+    let cancelMessage = `హాయ్, నేను ఇప్పుడే చేసిన ఆర్డర్ (${name}) కాన్సెల్ చేయాలనుకుంటున్నాను.`;
+    let cancelWhatsappUrl = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(cancelMessage)}`;
+
     document.getElementById('modalContent').innerHTML = `
-      <div class="success-box">
-        <div class="success-icon">🎉</div>
-        <h2 style="color: #28a745; margin-bottom: 5px;">ధన్యవాదాలు!</h2>
-        <p style="color: #555; font-size: 14px;">వాట్సాప్‌లో మెసేజ్ సెండ్ (Send) బటన్ క్లిక్ చేయండి. మీ ఆర్డర్ పూర్తి అవుతుంది.</p>
-        <button class="place-order-btn" style="background: #1b365d;" onclick="closeCart()">ఓకే (OK)</button>
+      <div style="text-align: center; padding: 15px 5px;">
+        <div style="font-size: 45px;">🎉</div>
+        <h3 style="color: #28a745; margin-bottom: 5px; margin-top: 5px;">ధన్యవాదాలు!</h3>
+        <p style="color: #555; font-size: 13px; margin-bottom: 15px;">వాట్సాప్‌లో మెసేజ్ సెండ్ (Send) బటన్ క్లిక్ చేయండి. మీ ఆర్డర్ పూర్తి అవుతుంది.</p>
+        
+        <hr style="border: 0.5px solid #eee; margin: 15px 0;">
+
+        <p style="font-size: 12px; color: #666; margin-bottom: 8px; font-weight: bold;">ఆర్డర్ కాన్సెల్ చేయాలనుకుంటున్నారా?</p>
+        
+        <a href="${cancelWhatsappUrl}" target="_blank" class="cancel-btn-whatsapp">
+          ❌ Cancel Order via WhatsApp
+        </a>
+
+        <div class="policy-box">
+          <strong>⚠️ Cancellation Policy:</strong>
+          <ul style="margin: 5px 0 0 15px; padding: 0;">
+            <li>ఆర్డర్ చేసిన 30 నిమిషాల లోపు మాత్రమే కాన్సెల్ చేయడానికి అవకాశం ఉంటుంది.</li>
+            <li>డెలివరీకి బయలుదేరిన తర్వాత కాన్సెలేషన్ అంగీకరించబడదు.</li>
+          </ul>
+        </div>
+
+        <button onclick="closeCart()" style="background: #1b365d; color: white; border: none; padding: 10px 25px; border-radius: 5px; margin-top: 15px; cursor: pointer; font-weight: bold; width: 100%;">ఓకే (OK)</button>
       </div>
     `;
 
