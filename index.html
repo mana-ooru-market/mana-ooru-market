@@ -383,6 +383,7 @@
 
 <div class="products-container">
   
+  <!-- HOME MADE CATEGORY -->
   <!-- 1. Mango Jelly -->
   <div class="card" data-category="home-made">
     <img src="1.jpg.jpeg" alt="Mango Jelly">
@@ -430,6 +431,47 @@
     <p>Price: ₹150</p>
     <div id="btn-container-Pure Turmeric">
       <button class="btn-add" onclick="addToCart('Pure Turmeric')">ADD</button>
+    </div>
+  </div>
+
+  <!-- KITCHEN NEEDS CATEGORY -->
+  <!-- 6. Chana Dal -->
+  <div class="card" data-category="kitchen-needs">
+    <img src="6.jpg" alt="Chana Dal" onerror="this.src='https://via.placeholder.com/150'">
+    <h3>Chana Dal</h3>
+    <p>Price: ₹90</p>
+    <div id="btn-container-Chana Dal">
+      <button class="btn-add" onclick="addToCart('Chana Dal')">ADD</button>
+    </div>
+  </div>
+
+  <!-- 7. Moong Dal -->
+  <div class="card" data-category="kitchen-needs">
+    <img src="7.jpg" alt="Moong Dal" onerror="this.src='https://via.placeholder.com/150'">
+    <h3>Moong Dal</h3>
+    <p>Price: ₹110</p>
+    <div id="btn-container-Moong Dal">
+      <button class="btn-add" onclick="addToCart('Moong Dal')">ADD</button>
+    </div>
+  </div>
+
+  <!-- 8. Peanuts -->
+  <div class="card" data-category="kitchen-needs">
+    <img src="8.jpg" alt="Peanuts" onerror="this.src='https://via.placeholder.com/150'">
+    <h3>Peanuts</h3>
+    <p>Price: ₹120</p>
+    <div id="btn-container-Peanuts">
+      <button class="btn-add" onclick="addToCart('Peanuts')">ADD</button>
+    </div>
+  </div>
+
+  <!-- 9. Sugar -->
+  <div class="card" data-category="kitchen-needs">
+    <img src="9.jpg" alt="Sugar" onerror="this.src='https://via.placeholder.com/150'">
+    <h3>Sugar</h3>
+    <p>Price: ₹45</p>
+    <div id="btn-container-Sugar">
+      <button class="btn-add" onclick="addToCart('Sugar')">ADD</button>
     </div>
   </div>
 
@@ -516,7 +558,11 @@
     "Mango Pickle": 180,
     "Fresh Mangoes": 120,
     "Homemade Halwa": 220,
-    "Pure Turmeric": 150
+    "Pure Turmeric": 150,
+    "Chana Dal": 90,
+    "Moong Dal": 110,
+    "Peanuts": 120,
+    "Sugar": 45
   };
   
   let cart = [];
@@ -793,7 +839,7 @@
       return;
     }
 
-    let message = "*🛍️ కొత్త ఆర్డర్ వివరాలు - మన ఊరి మార్కెట్ (SSS GARS PVT LTD)*\n\n";
+    let message = "*🛍️️ కొత్త ఆర్డర్ వివరాలు - మన ఊరి మార్కెట్ (SSS GARS PVT LTD)*\n\n";
     message += `👤 *పేరు:* ${name}\n`;
     message += `📞 *ఫోన్ నంబర్:* ${phone}\n`;
     message += `🏠 *చిరునామా:* ${address}\n`;
@@ -827,7 +873,7 @@
       <div style="text-align: center; padding: 20px 5px;">
         <div style="font-size: 50px;">🎉</div>
         <h3 style="color: #28a745; margin-bottom: 8px; margin-top: 5px;">ధన్యవాదాలు!</h3>
-        <p style="color: #555; font-size: 14px; margin-bottom: 20px;">వాట్సాప్‌లో మెసేజ్ సెండ్ (Send) బటన్ క్లిక్ చేయండి. మీ ఆర్డర్ పూర్తి అవుతుంది.</p>
+        <p style="color: #555; font-size: 14px; margin-bottom: 20px;">వాట్సాప్‌‌లో మెసేజ్ సెండ్ (Send) బటన్ క్లిక్ చేయండి. మీ ఆర్డర్ పూర్తి అవుతుంది.</p>
         
         <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; text-align: center; font-size: 12px; color: #555; border: 1px solid #eee;">
           💡 <em>మీ ఆర్డర్ వివరాలు పైన ఉన్న <strong>"📜 Order History"</strong> లో భద్రపరచబడ్డాయి.</em>
