@@ -18,9 +18,24 @@
       min-height: 55px;
     }
     
-    .header-title-container { display: flex; align-items: center; gap: 8px; }
-    .header-logo { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid #ff9900; }
-    .header-text { font-size: 16px; font-weight: bold; }
+    .header-title-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-logo {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ff9900;
+    }
+
+    .header-text {
+      font-size: 16px;
+      font-weight: bold;
+    }
 
     .history-btn-head {
       background: #ff9900;
@@ -37,7 +52,7 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
-    /* Search Bar Styling */
+    /* Search Bar Styles */
     .search-container {
       max-width: 1000px;
       margin: 15px auto 5px auto;
@@ -96,6 +111,7 @@
     .card h3 { font-size: 15px; margin: 8px 0 4px 0; }
     .card p { font-size: 14px; margin: 0 0 8px 0; color: #333; font-weight: bold; }
 
+    /* ADD Button & Quantity Toggle Controls */
     .btn-add { 
       background: #fff; 
       color: #2e7d32; 
@@ -109,7 +125,10 @@
       transition: 0.2s;
     }
 
-    .btn-add:hover { background: #2e7d32; color: white; }
+    .btn-add:hover {
+      background: #2e7d32;
+      color: white;
+    }
 
     .qty-control {
       display: flex;
@@ -136,6 +155,7 @@
       justify-content: center;
     }
 
+    /* Floating View Cart Bar at Bottom */
     .floating-cart-bar {
       position: fixed;
       bottom: 12px;
@@ -155,10 +175,28 @@
       cursor: pointer;
     }
 
-    .floating-cart-info { display: flex; flex-direction: column; }
-    .floating-cart-items { font-size: 12px; opacity: 0.9; }
-    .floating-cart-price { font-size: 16px; font-weight: bold; }
-    .floating-cart-btn-text { font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 5px; }
+    .floating-cart-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .floating-cart-items {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .floating-cart-price {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .floating-cart-btn-text {
+      font-weight: bold;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
     /* Modal Styles */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
@@ -193,13 +231,42 @@
     }
     .close-btn { background: #777; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 8px; }
 
-    .history-card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin-bottom: 12px; background: #fafafa; text-align: left; }
+    /* History Card Styles */
+    .history-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      background: #fafafa;
+      text-align: left;
+    }
     .history-date { font-size: 11px; color: #777; margin-bottom: 5px; }
     .history-items { font-size: 13px; color: #333; margin: 5px 0; }
     .history-total { font-weight: bold; color: #1b365d; font-size: 14px; }
 
-    .cancel-btn-whatsapp { display: block; background: #dc3545; color: white; text-decoration: none; padding: 8px 12px; border-radius: 5px; font-weight: bold; font-size: 12px; margin-top: 8px; text-align: center; }
-    .policy-box { background: #fff3cd; padding: 8px; border-radius: 5px; text-align: left; font-size: 11px; color: #856404; margin-top: 8px; border: 1px solid #ffeeba; }
+    .cancel-btn-whatsapp {
+      display: block;
+      background: #dc3545;
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 12px;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .policy-box {
+      background: #fff3cd;
+      padding: 8px;
+      border-radius: 5px;
+      text-align: left;
+      font-size: 11px;
+      color: #856404;
+      margin-top: 8px;
+      border: 1px solid #ffeeba;
+    }
   </style>
 </head>
 <body>
@@ -219,12 +286,13 @@
   <input type="text" id="searchInput" class="search-input" placeholder="🔍 ఉత్పత్తులను వెతకండి (Search Products)..." onkeyup="filterProducts()">
 </div>
 
-<h3 style="text-align:center; margin-top:10px; margin-bottom: 5px;">మా ఉత్పత్తులు (Our Products)</h3>
+<h3 style="text-align:center; margin-top:15px; margin-bottom: 5px;">మా ఉత్పత్తులు (Our Products)</h3>
 
-<div class="products-container" id="productsContainer">
+<div class="products-container">
   
-  <div class="card" data-title="మామిడి తాండ్ర">
-    <img src="1.jpg" alt="మామిడి తాండ్ర" onerror="this.src='https://via.placeholder.com/150'">
+  <!-- 1. మామిడి తాండ్ర -->
+  <div class="card">
+    <img src="1.jpg.jpeg" alt="మామిడి తాండ్ర">
     <h3>మామిడి తాండ్ర</h3>
     <p>ధర: ₹200</p>
     <div id="btn-container-మామిడి తాండ్ర">
@@ -232,8 +300,9 @@
     </div>
   </div>
 
-  <div class="card" data-title="మామిడి పచ్చడి">
-    <img src="2.jpg" alt="మామిడి పచ్చడి" onerror="this.src='https://via.placeholder.com/150'">
+  <!-- 2. మామిడి పచ్చడి -->
+  <div class="card">
+    <img src="2.jpg.jpeg" alt="మామిడి పచ్చడి">
     <h3>మామిడి పచ్చడి</h3>
     <p>ధర: ₹180</p>
     <div id="btn-container-మామిడి పచ్చడి">
@@ -241,8 +310,9 @@
     </div>
   </div>
 
-  <div class="card" data-title="తాజా మామిడిపండ్లు">
-    <img src="3.jpg" alt="తాజా మామిడిపండ్లు" onerror="this.src='https://via.placeholder.com/150'">
+  <!-- 3. తాజా మామిడిపండ్లు -->
+  <div class="card">
+    <img src="3.jpg.jpeg" alt="తాజా మామిడిపండ్లు">
     <h3>తాజా మామిడిపండ్లు</h3>
     <p>ధర: ₹120</p>
     <div id="btn-container-తాజా మామిడిపండ్లు">
@@ -250,8 +320,9 @@
     </div>
   </div>
 
-  <div class="card" data-title="హోమ్‌మేడ్ హల్వా">
-    <img src="4.jpg" alt="హోమ్‌మేడ్ హల్వా" onerror="this.src='https://via.placeholder.com/150'">
+  <!-- 4. హోమ్‌మేడ్ హల్వా -->
+  <div class="card">
+    <img src="4.jpg.jpeg" alt="హోమ్‌మేడ్ హల్వా">
     <h3>హోమ్‌మేడ్ హల్వా</h3>
     <p>ధర: ₹220</p>
     <div id="btn-container-హోమ్‌మేడ్ హల్వా">
@@ -259,8 +330,9 @@
     </div>
   </div>
 
-  <div class="card" data-title="స్వచ్ఛమైన పసుపు">
-    <img src="5.jpg" alt="స్వచ్ఛమైన పసుపు" onerror="this.src='https://via.placeholder.com/150'">
+  <!-- 5. స్వచ్ఛమైన పసుపు -->
+  <div class="card">
+    <img src="5.jpg.jpeg" alt="స్వచ్ఛమైన పసుపు">
     <h3>స్వచ్ఛమైన పసుపు</h3>
     <p>ధర: ₹150</p>
     <div id="btn-container-స్వచ్ఛమైన పసుపు">
@@ -270,7 +342,7 @@
 
 </div>
 
-<!-- Floating Cart Bar -->
+<!-- Bottom Floating View Cart Bar -->
 <div id="floatingCartBar" class="floating-cart-bar" onclick="showCart()">
   <div class="floating-cart-info">
     <span class="floating-cart-items" id="floatCartItems">0 ITEMS</span>
@@ -284,11 +356,57 @@
 <!-- Cart Pop-up Modal -->
 <div id="cartModal" class="modal">
   <div class="modal-content" id="modalContent">
-    <!-- Inner content generated dynamically -->
+    <h3>🛒 మీ కార్ట్ (Your Cart)</h3>
+    <div id="cartItems"></div>
+    <h4 id="cartTotal">మొత్తం: ₹0</h4>
+    
+    <div class="checkout-section">
+      <h4>📦 డెలివరీ వివరాలు & చెల్లింపు (Payment)</h4>
+      
+      <div class="input-group">
+        <label>మీ పేరు (Name):</label>
+        <input type="text" id="custName" placeholder="ఉదా: రాము">
+      </div>
+
+      <div class="input-group">
+        <label>ఫోన్ నంబర్ (Phone Number):</label>
+        <input type="tel" id="custPhone" placeholder="ఉదా: 9876543210">
+      </div>
+
+      <div class="input-group">
+        <label>చిరునామా (Delivery Address):</label>
+        <textarea id="custAddress" rows="2" placeholder="ఇంటి నంబర్, వీధి, ఊరి పేరు..."></textarea>
+      </div>
+
+      <div class="input-group">
+        <label>చెల్లింపు పద్ధతి (Payment Method):</label>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="UPI" checked onclick="toggleUpiDetails(true)">
+            📲 UPI (GPay/PhonePe)
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="COD" onclick="toggleUpiDetails(false)">
+            💵 Cash on Delivery
+          </label>
+        </div>
+      </div>
+
+      <div class="input-group" id="upiDetailGroup">
+        <label>మీ UPI ID / Google Pay / PhonePe నంబర్:</label>
+        <input type="text" id="custUpi" placeholder="ఉదా: example@upi లేదా 9876543210">
+      </div>
+
+      <button class="place-order-btn" onclick="submitOrder()">
+        📲 వాట్సాప్‌ ద్వారా ఆర్డర్ చేయండి
+      </button>
+    </div>
+
+    <button class="close-btn" onclick="closeCart()">Close</button>
   </div>
 </div>
 
-<!-- Order History Modal -->
+<!-- Order History Pop-up Modal -->
 <div id="historyModal" class="modal">
   <div class="modal-content">
     <h3>📜 మీ పాత ఆర్డర్‌లు (Order History)</h3>
@@ -315,7 +433,7 @@
     let cards = document.querySelectorAll('.products-container .card');
     
     cards.forEach(card => {
-      let title = card.getAttribute('data-title').toLowerCase();
+      let title = card.querySelector('h3').textContent.toLowerCase();
       if (title.includes(input)) {
         card.style.display = "flex";
       } else {
@@ -389,12 +507,10 @@
 
   function closeCart() {
     document.getElementById('cartModal').style.display = 'none';
-    resetModalContent();
   }
 
   function toggleUpiDetails(show) {
-    let upiGrp = document.getElementById('upiDetailGroup');
-    if(upiGrp) upiGrp.style.display = show ? 'block' : 'none';
+    document.getElementById('upiDetailGroup').style.display = show ? 'block' : 'none';
   }
 
   function renderCartModal() {
@@ -402,7 +518,7 @@
     if (!container) return;
     
     if (cart.length === 0) {
-      container.innerHTML = "<p style='text-align:center;'>కార్ట్ ఖాళీగా ఉంది!</p>";
+      container.innerHTML = "<p>కార్ట్ ఖాళీగా ఉంది!</p>";
       document.getElementById('cartTotal').textContent = "మొత్తం: ₹0";
       return;
     }
@@ -482,7 +598,6 @@
 
       <button class="close-btn" onclick="closeCart()">Close</button>
     `;
-    renderCartModal();
   }
 
   function saveOrderToHistory(orderData) {
@@ -599,9 +714,6 @@
     cart = [];
     updateUI();
   }
-
-  // Initial setup
-  resetModalContent();
 </script>
 
 </body>
