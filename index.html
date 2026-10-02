@@ -87,6 +87,44 @@
       border-color: #1b365d;
     }
 
+    /* Horizontal Category Tabs Container */
+    .category-tabs-container {
+      background: #1b365d;
+      padding: 10px 12px;
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      white-space: nowrap;
+      margin-top: 10px;
+      scrollbar-width: none; /* Firefox */
+    }
+    .category-tabs-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+
+    .category-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      padding-bottom: 4px;
+      border-bottom: 3px solid transparent;
+      transition: 0.2s;
+    }
+
+    .category-tab.active {
+      color: white;
+      border-bottom: 3px solid #ff9900;
+    }
+
+    .category-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
     .products-container { 
       display: grid; 
       grid-template-columns: repeat(2, 1fr); 
@@ -325,12 +363,28 @@
   <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search Products..." onkeyup="filterProducts()">
 </div>
 
-<h3 style="text-align:center; margin-top:15px; margin-bottom: 5px;">Our Products</h3>
+<!-- Category Tabs -->
+<div class="category-tabs-container">
+  <div class="category-tab active" onclick="selectCategory('all', this)">
+    <span class="category-icon">🛍️</span>
+    <span>All</span>
+  </div>
+  <div class="category-tab" onclick="selectCategory('home-made', this)">
+    <span class="category-icon">🏡</span>
+    <span>Home Made</span>
+  </div>
+  <div class="category-tab" onclick="selectCategory('kitchen-needs', this)">
+    <span class="category-icon">🍳</span>
+    <span>Kitchen Needs</span>
+  </div>
+</div>
+
+<h3 style="text-align:center; margin-top:15px; margin-bottom: 5px;" id="categoryHeading">Our Products</h3>
 
 <div class="products-container">
   
   <!-- 1. Mango Jelly -->
-  <div class="card">
+  <div class="card" data-category="home-made">
     <img src="1.jpg.jpeg" alt="Mango Jelly">
     <h3>Mango Jelly</h3>
     <p>Price: ₹200</p>
@@ -340,7 +394,7 @@
   </div>
 
   <!-- 2. Mango Pickle -->
-  <div class="card">
+  <div class="card" data-category="home-made">
     <img src="2.jpg.jpeg" alt="Mango Pickle">
     <h3>Mango Pickle</h3>
     <p>Price: ₹180</p>
@@ -350,7 +404,7 @@
   </div>
 
   <!-- 3. Fresh Mangoes -->
-  <div class="card">
+  <div class="card" data-category="home-made">
     <img src="3.jpg.jpeg" alt="Fresh Mangoes">
     <h3>Fresh Mangoes</h3>
     <p>Price: ₹120</p>
@@ -360,7 +414,7 @@
   </div>
 
   <!-- 4. Homemade Halwa -->
-  <div class="card">
+  <div class="card" data-category="home-made">
     <img src="4.jpg.jpeg" alt="Homemade Halwa">
     <h3>Homemade Halwa</h3>
     <p>Price: ₹220</p>
@@ -370,7 +424,7 @@
   </div>
 
   <!-- 5. Pure Turmeric -->
-  <div class="card">
+  <div class="card" data-category="home-made">
     <img src="5.jpg.jpeg" alt="Pure Turmeric">
     <h3>Pure Turmeric</h3>
     <p>Price: ₹150</p>
@@ -466,6 +520,17 @@
   };
   
   let cart = [];
+  let currentCategory = 'all';
+
+  function selectCategory(category, tabElement) {
+    currentCategory = category;
+    
+    // Active class toggle
+    document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+    tabElement.classList.add('active');
+
+    filterProducts();
+  }
 
   function filterProducts() {
     let input = document.getElementById('searchInput').value.toLowerCase();
@@ -473,7 +538,12 @@
     
     cards.forEach(card => {
       let title = card.querySelector('h3').textContent.toLowerCase();
-      if (title.includes(input)) {
+      let category = card.getAttribute('data-category');
+
+      let matchesSearch = title.includes(input);
+      let matchesCategory = (currentCategory === 'all' || category === currentCategory);
+
+      if (matchesSearch && matchesCategory) {
         card.style.display = "flex";
       } else {
         card.style.display = "none";
