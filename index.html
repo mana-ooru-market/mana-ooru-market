@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>మన ఊరి మార్కెట్</title>
+  <title>మన ఊరి మార్కెట్ - SSS GARS PVT LTD</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0 0 80px 0; background: #f9f9f9; }
     
@@ -32,9 +32,25 @@
       border: 2px solid #ff9900;
     }
 
+    .header-text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .company-title {
+      font-size: 10px;
+      font-weight: bold;
+      color: #ff9900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
     .header-text {
       font-size: 16px;
       font-weight: bold;
+      line-height: 1.2;
     }
 
     .history-btn-head {
@@ -274,7 +290,10 @@
 <header>
   <div class="header-title-container">
     <img src="logo.jpg" alt="మన ఊరి మార్కెట్" class="header-logo" onerror="this.src='https://via.placeholder.com/40'">
-    <span class="header-text">మన ఊరి మార్కెట్</span>
+    <div class="header-text-container">
+      <span class="company-title">SSS GARS PVT LTD</span>
+      <span class="header-text">మన ఊరి మార్కెట్</span>
+    </div>
   </div>
   <button class="history-btn-head" onclick="openHistoryModal()">
     📜 Order History
@@ -667,7 +686,7 @@
       return;
     }
 
-    let message = "*🛍️ కొత్త ఆర్డర్ వివరాలు - మన ఊరి మార్కెట్*\n\n";
+    let message = "*🛍️ కొత్త ఆర్డర్ వివరాలు - మన ఊరి మార్కెట్ (SSS GARS PVT LTD)*\n\n";
     message += `👤 *పేరు:* ${name}\n`;
     message += `📞 *ఫోన్ నంబర్:* ${phone}\n`;
     message += `🏠 *చిరునామా:* ${address}\n`;
