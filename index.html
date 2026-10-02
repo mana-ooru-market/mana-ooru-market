@@ -260,8 +260,27 @@
     .history-items { font-size: 13px; color: #333; margin: 5px 0; }
     .history-total { font-weight: bold; color: #1b365d; font-size: 14px; }
 
+    .action-btn-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .reorder-btn {
+      flex: 1;
+      background: #ff9900;
+      color: #1b365d;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+    }
+
     .cancel-btn-whatsapp {
-      display: block;
+      flex: 1;
       background: #dc3545;
       color: white;
       text-decoration: none;
@@ -269,8 +288,9 @@
       border-radius: 5px;
       font-weight: bold;
       font-size: 12px;
-      margin-top: 8px;
       text-align: center;
+      display: inline-block;
+      box-sizing: border-box;
     }
 
     .policy-box {
@@ -625,6 +645,18 @@
     localStorage.setItem('myOrderHistory', JSON.stringify(history));
   }
 
+  function reorderItems(index) {
+    let history = JSON.parse(localStorage.getItem('myOrderHistory') || '[]');
+    let selectedOrder = history[index];
+    
+    if (selectedOrder && selectedOrder.items) {
+      cart = [...selectedOrder.items];
+      updateUI();
+      closeHistoryModal();
+      showCart();
+    }
+  }
+
   function openHistoryModal() {
     let history = JSON.parse(localStorage.getItem('myOrderHistory') || '[]');
     let listContainer = document.getElementById('historyList');
@@ -633,7 +665,7 @@
       listContainer.innerHTML = "<p style='text-align:center; padding: 20px 0; color:#777;'>మీరు ఇంకా ఎలాంటి ఆర్డర్‌లు చేయలేదు!</p>";
     } else {
       let html = "";
-      history.forEach((order) => {
+      history.forEach((order, index) => {
         let itemsStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         let cancelMsg = `హాయ్, నేను ${order.date} న చేసిన ఆర్డర్ (బిల్లు: ₹${order.total}) కాన్సెల్ చేయాలనుకుంటున్నాను.`;
         let cancelUrl = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(cancelMsg)}`;
@@ -644,9 +676,14 @@
             <div class="history-items">🛍️ <strong>వస్తువులు:</strong> ${itemsStr}</div>
             <div class="history-total">💰 మొత్తం బిల్లు: ₹${order.total}</div>
             
-            <a href="${cancelUrl}" target="_blank" class="cancel-btn-whatsapp">
-              ❌ Cancel Order via WhatsApp
-            </a>
+            <div class="action-btn-group">
+              <button class="reorder-btn" onclick="reorderItems(${index})">
+                🔄 Re-order
+              </button>
+              <a href="${cancelUrl}" target="_blank" class="cancel-btn-whatsapp">
+                ❌ Cancel Order
+              </a>
+            </div>
             
             <div class="policy-box">
               ⚠️ <em>గమనిక: ఆర్డర్ చేసిన 30 నిమిషాల లోపు మాత్రమే కాన్సెలేషన్ అంగీకరించబడుతుంది.</em>
